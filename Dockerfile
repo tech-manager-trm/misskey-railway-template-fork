@@ -1,5 +1,4 @@
-ARG MISSKEY_VERSION
-FROM misskey/misskey:${MISSKEY_VERSION} as misskey
+FROM misskey/misskey:13.14.2 as misskey
 FROM node:22.11.0-slim as base
 
 FROM base as jq

@@ -1,0 +1,53 @@
+url: https://misskey-railway-template-fork-production.up.railway.app/
+
+# Port
+port: 3000
+
+# PostgreSQL
+db:
+  host: ${DB_HOST}
+  port: ${DB_PORT}
+  db: ${DB_NAME}
+  user: ${DB_USER}
+  pass: ${DB_PASS}
+
+# Redis
+redis:
+  host: ${REDIS_HOST}
+  port: ${REDIS_PORT}
+  pass: ${REDIS_PASS}
+  prefix: misskey
+
+# ID Generation
+id: 'aid'
+
+# UI Customization
+name: 'My Misskey Instance'
+description: 'Welcome to my Misskey instance!'
+defaultLightTheme: l-rosepine
+defaultDarkTheme: d-rosepine
+
+# Disable unnecessary features
+enableEmail: false
+enableTwitterIntegration: false
+enableGithubIntegration: false
+enableDiscordIntegration: false
+enableServiceWorker: false
+
+# Menu customization
+menu:
+  home: true
+  notifications: true
+  messaging: false
+  drive: true
+  followRequests: false
+  explore: true
+  announcements: false
+  search: true
+  settings: true
+
+# Security
+disableRegistration: false
+disableLocalTimeline: false
+disableGlobalTimeline: true
+disableHsts: true
