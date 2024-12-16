@@ -1,21 +1,21 @@
-url: ${RAILWAY_STATIC_URL}
+url: ${RAILWAY_PUBLIC_DOMAIN}
 
 # Port
 port: ${PORT}
 
 # PostgreSQL
 db:
-  host: ${POSTGRES_HOST}
-  port: ${POSTGRES_PORT}
-  db: ${POSTGRES_DATABASE}
-  user: ${POSTGRES_USER}
-  pass: ${POSTGRES_PASSWORD}
+  host: ${PGHOST}
+  port: ${PGPORT}
+  db: ${PGDATABASE}
+  user: ${PGUSER}
+  pass: ${PGPASSWORD}
 
 # Redis
 redis:
-  host: ${REDIS_HOST}
-  port: ${REDIS_PORT}
-  pass: ${REDIS_PASSWORD}
+  host: ${REDISHOST}
+  port: ${REDISPORT}
+  pass: ${REDISPASSWORD}
   prefix: misskey
   db: 0
 
