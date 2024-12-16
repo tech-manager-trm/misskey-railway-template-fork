@@ -1,17 +1,27 @@
-FROM misskey/misskey:13.14.2 as misskey
-FROM node:22.11.0-slim as base
+FROM misskey/misskey:13.14.2
 
-FROM base as jq
-RUN apt update && apt install -y jq
-COPY --from=misskey /misskey/package.json ./
-RUN jq '.scripts.migrateandstart = "node /railway/index.js && " + .scripts.migrateandstart' package.json > package.json.tmp \
-  && mv package.json.tmp package.json
+WORKDIR /misskey
 
-FROM base as build
-COPY . .
-RUN corepack enable pnpm && pnpm i
-RUN pnpm build
+# Copy configuration
+COPY .config /misskey/.config
 
-FROM misskey
-COPY --from=jq package.json ./
-COPY --from=build dist/index.js /railway/
+# Install dependencies and build
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends jq && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Modify package.json for Railway compatibility
+RUN jq '.scripts.migrateandstart = "node /railway/index.js && " + .scripts.migrateandstart' package.json > package.json.tmp && \
+    mv package.json.tmp package.json
+
+# Copy Railway-specific files
+COPY dist/index.js /railway/
+
+# Set environment variables
+ENV NODE_ENV=production
+
+# Expose port
+EXPOSE 3000
+
+CMD ["pnpm", "run", "migrateandstart"]
