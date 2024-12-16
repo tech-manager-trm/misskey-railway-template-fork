@@ -1,22 +1,23 @@
-url: https://misskey-railway-template-fork-production.up.railway.app/
+url: ${RAILWAY_STATIC_URL}
 
 # Port
-port: 3000
+port: ${PORT}
 
 # PostgreSQL
 db:
-  host: ${DB_HOST}
-  port: ${DB_PORT}
-  db: ${DB_NAME}
-  user: ${DB_USER}
-  pass: ${DB_PASS}
+  host: ${POSTGRES_HOST}
+  port: ${POSTGRES_PORT}
+  db: ${POSTGRES_DATABASE}
+  user: ${POSTGRES_USER}
+  pass: ${POSTGRES_PASSWORD}
 
 # Redis
 redis:
   host: ${REDIS_HOST}
   port: ${REDIS_PORT}
-  pass: ${REDIS_PASS}
+  pass: ${REDIS_PASSWORD}
   prefix: misskey
+  db: 0
 
 # ID Generation
 id: 'aid'
@@ -47,7 +48,11 @@ menu:
   settings: true
 
 # Security
-disableRegistration: false
-disableLocalTimeline: false
+disableHtml: true
+disableRegistration: true
+disableLocalTimeline: true
+disableFederation: true
+disableIndexing: true
 disableGlobalTimeline: true
+disableAiNickname: true
 disableHsts: true
